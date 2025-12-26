@@ -67,11 +67,53 @@ function ensureDirectoriesExist() {
 }
 
 // Função para criar chave de consulta
-function createQueryKey(method, path) {
+function createQueryKey(method, path, query) {
   // Remove query strings e fragmentos
   const pathWithoutQuery = path.split('?')[0].split('#')[0];
   // Remove barra inicial e substitui barras por hífens
-  const normalizedPath = pathWithoutQuery.replace(/^\//, '').replace(/\//g, '-');
+  let normalizedPath = pathWithoutQuery.replace(/^\//, '').replace(/\//g, '-');
+  
+  // Se houver query params, inclui os parâmetros requestDTO.* na chave (exceto datas)
+  if (query && Object.keys(query).length > 0) {
+    const requestDTOParams = [];
+    
+    // Coleta todos os parâmetros que começam com "requestDTO." (ignorando datas)
+    Object.keys(query)
+      .filter(key => {
+        if (!key.startsWith('requestDTO.')) {
+          return false;
+        }
+        const paramName = key.replace('requestDTO.', '');
+        // Ignora parâmetros de data
+        return !paramName.includes('data') && !paramName.includes('Data') && 
+               !paramName.includes('dataInicio') && !paramName.includes('dataFim') &&
+               !paramName.includes('dataInicio') && !paramName.includes('dataFim');
+      })
+      .sort() // Ordena para garantir consistência
+      .forEach(key => {
+        const paramName = key.replace('requestDTO.', '');
+        const paramValue = query[key];
+        
+        // Normaliza o valor: remove caracteres especiais e converte para lowercase quando apropriado
+        let normalizedValue = String(paramValue);
+        
+        // Para status, converte para lowercase
+        if (paramName === 'status') {
+          normalizedValue = normalizedValue.toLowerCase();
+        }
+        // Para outros valores, remove caracteres especiais e converte para lowercase
+        else {
+          normalizedValue = normalizedValue.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+        }
+        
+        requestDTOParams.push(`${paramName}-${normalizedValue}`);
+      });
+    
+    if (requestDTOParams.length > 0) {
+      normalizedPath = `${normalizedPath}-${requestDTOParams.join('-')}`;
+    }
+  }
+  
   return `${method.toLowerCase()}.${normalizedPath}`;
 }
 
@@ -270,7 +312,7 @@ app.all('*', (req, res, next) => {
     return next();
   }
   
-  const queryKey = createQueryKey(req.method, req.path);
+  const queryKey = createQueryKey(req.method, req.path, req.query);
   const config = loadConfig();
   const activeUseCase = getActiveUseCase(queryKey, config);
   
@@ -283,13 +325,15 @@ app.all('*', (req, res, next) => {
   }
   
   const mock = loadMock(queryKey, activeUseCase);
+
+  console.log('🔍 [MOCK] Mock response:', { queryKey, activeUseCase, mock: !!mock });
   
   if (!mock) {
     return res.status(404).json({
       error: 'Arquivo de mock não encontrado',
       queryKey,
       useCase: activeUseCase,
-      expectedFile: `${queryKey}.${activeUseCase}.json`
+      expectedFile: `${mockKey}.${activeUseCase}.json`
     });
   }
   

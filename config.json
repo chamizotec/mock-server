@@ -7,6 +7,57 @@
     "success": true,
     "invalid_credentials": false,
     "account_locked": false
+  },
+  "post.rol-mobile-api-transferencia-listar-v2": {
+    "success": true,
+    "success_empty": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar": {
+    "success_pending": true,
+    "success_completed": false,
+    "success_empty": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-status-open": {
+    "success": true,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-status-acknowledged": {
+    "success": true,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-status-closed": {
+    "success": true,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-status-cancelled": {
+    "success": true,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-dataFim-2024-12-31-dataInicio-2024-01-01-status-open": {
+    "success": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-dataFim-2024-12-31-dataInicio-2024-01-01-status-acknowledged": {
+    "success": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-dataFim-2024-12-31-dataInicio-2024-01-01-status-closed": {
+    "success": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-listar-dataFim-2024-12-31-dataInicio-2024-01-01-status-cancelled": {
+    "success": false,
+    "error": false
+  },
+  "get.rol-mobile-api-relatos-infracao-med-relator-consultar": {
+    "success": true,
+    "error": false
+  },
+  "get.rol-mobile-api-transferencia-{endToEnd}": {
+    "success": true,
+    "error": false
   }
 }
 
