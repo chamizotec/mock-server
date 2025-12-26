@@ -1,0 +1,14 @@
+{
+  "status": 401,
+  "response": {
+    "mensagens": [
+      {
+        "mensagem": "OTP expirado. Solicite um novo código."
+      }
+    ]
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "status": 400,
+  "response": {
+    "mensagens": [
+      {
+        "mensagem": "OTP inválido. Verifique o código e tente novamente."
+      }
+    ]
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+

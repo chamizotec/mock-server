@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "response": {
+    "saldo": 1500.50,
+    "saldoDisponivel": 1500.50,
+    "dataAtualizacao": "2024-01-15T10:30:00Z"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+

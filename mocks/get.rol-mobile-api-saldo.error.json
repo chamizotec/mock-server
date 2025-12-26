@@ -1,0 +1,14 @@
+{
+  "status": 500,
+  "response": {
+    "mensagens": [
+      {
+        "mensagem": "Erro ao consultar saldo. Tente novamente."
+      }
+    ]
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+

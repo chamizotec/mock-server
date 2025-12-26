@@ -1,0 +1,12 @@
+{
+  "get.api-users": {
+    "success": true,
+    "error": false
+  },
+  "post.api-auth-login": {
+    "success": true,
+    "invalid_credentials": false,
+    "account_locked": false
+  }
+}
+

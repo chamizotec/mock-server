@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "response": {
+    "validado": true,
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "expires_in": 3600
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
+
