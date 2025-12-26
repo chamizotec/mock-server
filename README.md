@@ -76,34 +76,78 @@ flowchart TD
 
 ## 🚀 Instalação e Execução
 
-### Pré-requisitos
+### Instalação Automática
+
+Para instalar o mock-server em um projeto existente, use o script de instalação:
+
+```bash
+# Baixe o script de instalação
+curl -O https://raw.githubusercontent.com/chamizotec/mock-server/main/install.sh
+
+# Ou clone o repositório e execute o script
+chmod +x install.sh
+./install.sh
+```
+
+O script de instalação irá:
+- ✅ Verificar se Node.js está instalado
+- ✅ Clonar o repositório mock-server
+- ✅ Instalar as dependências automaticamente
+- ✅ Adicionar o script `mock-server` ao `package.json` do projeto
+- ✅ Adicionar `mock-server` ao `.gitignore`
+
+### Instalação Manual
+
+#### Pré-requisitos
 
 - Node.js >= 18
 - npm ou yarn
+- Git (para clonar o repositório)
 
-### Instalação
+#### Passos
 
-```bash
-cd mock-server
-npm install
-```
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/chamizotec/mock-server.git
+   ```
 
-ou
+2. **Instale as dependências:**
+   ```bash
+   cd mock-server
+   npm install
+   ```
 
-```bash
-cd mock-server
-yarn install
-```
+3. **Adicione o script ao package.json do seu projeto (opcional):**
+   ```json
+   {
+     "scripts": {
+       "mock-server": "cd mock-server && npm start"
+     }
+   }
+   ```
+
+4. **Adicione ao .gitignore (opcional):**
+   ```
+   mock-server
+   ```
 
 ### Execução
 
+**Opção 1: Usando o script do package.json (se adicionado):**
 ```bash
+npm run mock-server
+```
+
+**Opção 2: Executar diretamente:**
+```bash
+cd mock-server
 npm start
 ```
 
 ou
 
 ```bash
+cd mock-server
 yarn start
 ```
 
@@ -151,6 +195,7 @@ mock-server/
 ├── server.js           # Servidor Express principal
 ├── package.json        # Dependências do projeto
 ├── config.json         # Configuração de casos de uso ativos
+├── install.sh          # Script de instalação automática
 ├── mocks/              # Pasta com arquivos de mock
 │   ├── get.api-users.success.json
 │   ├── get.api-users.error.json
